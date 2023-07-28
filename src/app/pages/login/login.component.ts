@@ -31,6 +31,6 @@ export class LoginComponent {
   }
 
   loginUser(){
-    alert("Logado!")
+    alert("Logado!");
   }
 }
