@@ -10,21 +10,29 @@
         </div>
 
         <div class="container-form">
-            <form action="" class="form-input">
+            <form action="" class="form-input" [formGroup] ="loginForm" (submit)="loginUser()">
             <div class="group-input">
                 <div class="text-info">
                     Email                    
                 </div>
-                <input class="input-form" type="text" name="email" id="email" placeholder="Digite o email">
+                <input class="input-form" type="text" name="email" id="email" placeholder="Digite o email" formControlName="email" required="">
+                
+                <label *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="error-input">
+                    Campo Obrigatorio!!
+                </label>
             </div>
             <div class="group-input">
                 <div class="text-info">
                     Senha                    
                 </div>
-                <input class="input-form" type="password" name="senha" id="senha" placeholder="Digite o email">
+                <input class="input-form" type="password" name="senha" id="senha" placeholder="Digite o email" formControlName="senha" required="">
+
+                <label *ngIf="loginForm.get('senha')?.errors?.['required'] && loginForm.get('senha')?.touched" class="error-input">
+                    Campo Obrigatorio!!
+                </label>
             </div>
             <div class="group-input">
-                <input class="btn-login" type="submit" value="login">
+                <input class="btn-login" type="submit" value="login" [ngClass]="{'disabled' : !loginForm.valid}" [disabled]="!loginForm.valid">
             </div>
         </form>
         </div>
